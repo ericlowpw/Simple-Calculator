@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private var eTNum1: EditText? = null
     private var eTNum2: EditText? = null
     private lateinit var tvAnswer: TextView
-
+    private lateinit var btnNextAct: Button
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,12 +32,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         eTNum1 = findViewById(R.id.edit_Number1)
         eTNum2 = findViewById(R.id.edit_Number2)
         tvAnswer = findViewById(R.id.textView_Answer)
-
+        btnNextAct = findViewById(R.id.btnNextActivity)
 
         btnAdd.setOnClickListener(this)
         btnSub.setOnClickListener(this)
         btnMul.setOnClickListener(this)
         btnDiv.setOnClickListener(this)
+        btnNextAct.setOnClickListener(this)
     }
 
     private fun nullCheck(et: EditText?):Int {
@@ -63,9 +64,17 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 tvAnswer.text = (num1 - num2).toString()
             }
 
+            
+
             btnMul.id -> {
                 //showToast("btn Mul is clicked. num are $num1 and $num2")
                 tvAnswer.text = (num1 * num2).toString()
+            }
+
+            btnNextAct.id -> {
+                Intent(this, MainActivity2::class.java).also {
+                    startActivity(it)
+                }
             }
 
             else -> {
